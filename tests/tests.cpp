@@ -1,13 +1,17 @@
 #include <gtest/gtest.h>
 #include <vector>
-#include <cstdlib>
+#include <random>
 #include "src/parsort.h"
 #include "src/seqsort.h"
 
 std::vector<int> generate_random_vector(size_t size) {
     std::vector<int> vec(size);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dis(0, 999999);
+    
     for (size_t i = 0; i < size; i++) {
-        vec[i] = std::rand() % 1000000;
+        vec[i] = dis(gen);
     }
     return vec;
 }

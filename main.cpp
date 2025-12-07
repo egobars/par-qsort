@@ -2,6 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <iomanip>
+#include <random>
 
 #include "src/seqsort.h"
 #include "src/parsort.h"
@@ -9,8 +10,13 @@
 int main() {
     size_t data_size = 100000000;
     std::vector<int> data(data_size);
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dis(0, data_size - 1);
+    
     for (size_t i = 0; i < data_size; i++) {
-        data[i] = std::rand() % data_size;
+        data[i] = dis(gen);
     }
     size_t num_runs = 5;
 
